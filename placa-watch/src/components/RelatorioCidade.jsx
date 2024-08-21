@@ -7,7 +7,6 @@ function RelatorioCidade() {
     e.preventDefault();
     if (!cidade) return;
 
-    // Gerar relatório para a cidade
     console.log("Gerando relatório para:", cidade);
   };
 

@@ -20,7 +20,6 @@ function UploadPlaca() {
     formData.append("foto", file);
     formData.append("cidade", cidade);
 
-    // Enviar formData para o backend
     console.log("Uploading:", file, cidade);
   };
 
