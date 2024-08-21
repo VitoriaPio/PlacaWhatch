@@ -8,7 +8,6 @@ function ConsultaPlaca() {
     e.preventDefault();
     if (!placa) return;
 
-    // Consultar a placa no backend
     console.log("Consultando:", placa);
   };
 
