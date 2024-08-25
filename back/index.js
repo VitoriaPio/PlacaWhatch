@@ -27,6 +27,21 @@ app.get('/api', (req, res) => {
 
 app.use('/api/placa', placaRota);
 
+app.get('/api/consulta/:placa', (req, res) => {
+  const placa = req.params.placa ?? ''
+
+  if(placa) {
+    res.json({
+      message: `Placa ${placa} encontrada`
+    })
+  }
+
+  res.status(404).json({
+    message: 'Placa não encontrada'
+  })
+
+})
+
 const PORT = 8080;
 
 const server = http.createServer(app);

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import getPlate from "../actions/get-plate";
 
 function ConsultaPlaca() {
   const [placa, setPlaca] = useState("");
@@ -8,7 +9,16 @@ function ConsultaPlaca() {
     e.preventDefault();
     if (!placa) return;
 
-    console.log("Consultando:", placa);
+    // Consultando placa na API
+    try {
+      const data = await getPlate(placa)
+      if(data) setResultado(data)
+
+        console.log(data)
+
+    } catch (e) {
+      console.error(e)
+    }
   };
 
   return (
@@ -23,7 +33,7 @@ function ConsultaPlaca() {
         />
         <button type="submit">Consultar</button>
       </form>
-      {resultado && <p>Resultado: {resultado}</p>}
+      {resultado && <p>Resultado: {JSON.stringify(resultado, null, 2)}</p>}
     </div>
   );
 }
