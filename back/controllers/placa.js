@@ -44,7 +44,7 @@ async function relatorio(cidade) {
 async function busca(placa) {
     try {
       const result = await sql`
-        SELECT * FROM placas WHERE numero_placa = ${placa}
+        SELECT * FROM placa WHERE numero_placa = ${placa}
       `;
   
       if (result.length > 0) {
