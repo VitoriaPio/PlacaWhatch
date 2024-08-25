@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import getReport from "../actions/get-report";
 
 function RelatorioCidade() {
   const [cidade, setCidade] = useState("");
@@ -8,6 +9,17 @@ function RelatorioCidade() {
     if (!cidade) return;
 
     console.log("Gerando relatório para:", cidade);
+
+    try {
+      const data = await getReport(cidade)
+      if(data) setResultado(data)
+
+        console.log(data)
+
+    } catch (e) {
+      console.error(e)
+    }
+
   };
 
   return (
