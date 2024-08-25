@@ -110,7 +110,7 @@ router.post('/cadastro', upload.single('image'),
   }
 );
 
-router.get('/placa/consulta/:placa', (req, res) => {
+router.get('/consulta/:placa', (req, res) => {
   const { placa } = req.params;
 
   if (placa) {
