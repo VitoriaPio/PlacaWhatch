@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import registryPlate from "../actions/registry-plate";
+import { useState } from "react";
+import useRegistry from "../hooks/use-registry";
 
 function UploadPlaca() {
   const [file, setFile] = useState(null);
   const [cidade, setCidade] = useState("");
+  const { registryPlate } = useRegistry()
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -18,12 +19,11 @@ function UploadPlaca() {
     if (!file || !cidade) return;
 
     const formData = new FormData();
-    formData.append("foto", file);
+    formData.append("image", file);
     formData.append("cidade", cidade);
 
-    registryPlate(formData).then((res) => console.log(res)).catch((e) = console.error(e))
-
-    // console.log("Uploading:", {file, cidade});
+    // Chamando função de registro de placa
+    registryPlate(formData)
   };
 
   return (

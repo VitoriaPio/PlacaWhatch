@@ -22,6 +22,7 @@ function extrairPlaca(texto) {
 
   if (matchAntigo) {
     return matchAntigo[0].replace(/\s/g, '').replace(/[^A-Z0-9]/g, '-');
+
   } else if (matchAtual) {
     return matchAtual[0].replace(/\s/g, '');
   }  
@@ -74,9 +75,15 @@ router.post('/cadastro', upload.single('image'),
         return res.status(400).json({ error: 'imagem invalida' });
       }
 
+      // Data response
+      // console.log('API RESPONSE',response.data)
+
       const numero = extrairPlaca(
         response.data.ParsedResults[0].ParsedText
       );
+
+      console.log({numero, parsedText: response.data.ParsedResults[0].ParsedText})
+
       const cidade = req.body.cidade;
       if (!numero) {
         return res
@@ -98,7 +105,7 @@ router.post('/cadastro', upload.single('image'),
 
     res.status(200).json(dados);
     } catch (error) {
-      res.status(500).json({ error: 'erro' });
+      res.status(500).json({ error });
     }
   }
 );
