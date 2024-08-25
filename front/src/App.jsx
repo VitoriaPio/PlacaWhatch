@@ -1,8 +1,8 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import UploadPlaca from "./components/UploadPlaca";
+import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import ConsultaPlaca from "./components/ConsultaPlaca";
 import RelatorioCidade from "./components/RelatorioCidade";
+import UploadPlaca from "./components/UploadPlaca";
 
 function App() {
   return (

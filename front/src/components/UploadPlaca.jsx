@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import registryPlate from "../actions/registry-plate";
 
 function UploadPlaca() {
   const [file, setFile] = useState(null);
@@ -20,7 +21,9 @@ function UploadPlaca() {
     formData.append("foto", file);
     formData.append("cidade", cidade);
 
-    console.log("Uploading:", file, cidade);
+    registryPlate(formData).then((res) => console.log(res)).catch((e) = console.error(e))
+
+    // console.log("Uploading:", {file, cidade});
   };
 
   return (

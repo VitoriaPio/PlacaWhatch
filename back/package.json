@@ -7,6 +7,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.5",
+    "cors": "^2.8.5",
     "express": "^4.19.2",
     "multer": "^1.4.5-lts.1",
     "react": "^18.3.1",
@@ -15,6 +16,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "dev": "node --watch index.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
