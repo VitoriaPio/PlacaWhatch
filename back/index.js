@@ -11,6 +11,17 @@ const placaRota = require('./rotas/placa'); // Importa as rotas da placas
 const usuarioRota = require('./rotas/usuario');
 const alertaRota = require('./rotas/alerta');
 
+app.get('/', (req, res) => {
+  res.send({
+    message: 'API Placas Watch',
+    routes: [
+      '/api/placas',
+      '/api/usuarios',
+      '/api/alerta',
+    ]
+  })
+})
+
 // Permite o uso de JSON no corpo das requisições
 app.get('/api', (req, res) => {
   res.send('Hello');
