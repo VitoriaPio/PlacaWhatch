@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
   res.json({
     message: 'API Placas Watch',
     routes: [
-      '/api/placas',
+      '/api/placa',
       // '/api/usuarios',
       // '/api/alerta',
     ]
@@ -24,7 +24,7 @@ app.get('/api', (req, res) => {
   res.send('😈');
 });
 
-app.use('/api/placas', placaRota);
+app.use('/api/placa', placaRota);
 // app.use('/api/usuario', usuarioRota);
 // app.use('/api/alerta', alertaRota);
 
