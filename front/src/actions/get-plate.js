@@ -5,11 +5,15 @@ export default async function getPlate(plate) {
     method: 'GET'
   })
 
-  const data = await response.json()
+  const placa = req.params.placa ?? ''
 
-  if (!response.ok) {
-    throw new Error('Ocorreu um erro ao consultar placa')
+  if(placa) {
+    res.json({
+      message: `Placa ${placa} encontrada`
+    })
   }
 
-  return data
+  res.status(404).json({
+    message: 'Placa não encontrada'
+  })
 }
