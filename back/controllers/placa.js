@@ -46,9 +46,11 @@ async function busca(placa) {
       const result = await sql`
         SELECT * FROM placa WHERE numero_placa = ${placa}
       `;
-  
-      if (result.length > 0) {
-        return { status: 200, data: result[0] };
+
+      resultado = result.rows;
+        
+      if (resultado.length > 0) {
+        return { status: 200, data: resultado[0] };
       } else {
         return { status: 404, data: { error: 'nenhum registro encontrado.' } };
       }

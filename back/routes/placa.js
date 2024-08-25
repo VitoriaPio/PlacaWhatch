@@ -98,7 +98,7 @@ router.post('/cadastro', upload.single('image'),
 
     res.status(200).json(dados);
     } catch (error) {
-      res.status(500).json({ error: 'Ocorreu um erro!' });
+      res.status(500).json({ error: 'erro' });
     }
   }
 );
@@ -107,9 +107,13 @@ router.get('/consulta/:placa', async (req, res) => {
   try {
     let placa = req.params.placa;
     resultado = await busca(placa);
-    console.log(resultado);
+    if (placa) {
+      res.json({ placa: placa });
+    }else {
+      res.status(404).json({ error: 'nenhum registro encontrado.' });
+    }
 }catch (error){
-  console.log(error);
+  res.status(500).json({ error: 'erro ao consultar a placa.' });
 }
 });
 
