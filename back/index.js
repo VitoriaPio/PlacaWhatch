@@ -12,7 +12,7 @@ const usuarioRota = require('./rotas/usuario');
 const alertaRota = require('./rotas/alerta');
 
 app.get('/', (req, res) => {
-  res.send({
+  res.json({
     message: 'API Placas Watch',
     routes: [
       '/api/placas',
