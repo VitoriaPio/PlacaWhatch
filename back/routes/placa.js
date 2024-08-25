@@ -99,8 +99,8 @@ router.post('/cadastro', upload.single('image'),
           hora: horaAtual,
         });
       } catch (error) {
-        console.error('Error during database operation:', error);
-        return res.status(500).json({ error: 'Erro ao salvar dados.' });
+        console.error('erro no banco de dados', error);
+        return res.status(500).json({ error: 'erro ao salvar dados.' });
       }
 
     res.status(200).json(dados);
@@ -110,19 +110,19 @@ router.post('/cadastro', upload.single('image'),
   }
 );
 
-router.get('/consulta/:placa', async (req, res) => {
-  try {
-    let placa = req.params.placa;
-    resultado = await busca(placa);
-    if (placa) {
-      res.json({ placa: placa });
-    }else {
-      res.status(404).json({ error: 'nenhum registro encontrado.' });
-    }
-}catch (error){
-  res.status(500).json({ error: 'erro ao consultar a placa.' });
-}
-});
+// router.get('/consulta/:placa', async (req, res) => {
+//   try {
+//     let placa = req.params.placa;
+//     resultado = await busca(placa);
+//     if (placa) {
+//       res.json({ placa: placa });
+//     }else {
+//       res.status(404).json({ error: 'nenhum registro encontrado.' });
+//     }
+// }catch (error){
+//   res.status(500).json({ error: 'erro ao consultar a placa.' });
+// }
+// });
 
 router.get('/relatorio/cidade/:cidade', async (req, res) => {
   try {
@@ -137,28 +137,25 @@ router.get('/relatorio/cidade/:cidade', async (req, res) => {
 
     const doc = new PDFDocument();
     res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader(
-      'Content-Disposition',
-      `attachment; filename=relatorio_${cidade}.pdf`
-    );
+    res.setHeader('Content-Disposition',`attachment; filename=${cidade}.pdf`);
     doc.pipe(res);
 
     doc
       .fontSize(18)
-      .text(`Relatório de Placas - Cidade: ${cidade}`, { align: 'center' });
+      .text(`Relatório - ${cidade}`, { align: 'center' });
     doc.moveDown();
 
     registros.forEach((registro) => {
-      doc.text(`Número da Placa: ${registro.numero_placa}`);
-      doc.text(`Cidade: ${registro.cidade}`);
-      doc.text(`Data: ${new Date(registro.data).toISOString().split('T')[0]}`); // Format the date
-      doc.text(`Hora: ${registro.hora}`);
+      doc.text(`nº da placa: ${registro.numero_placa}`);
+      doc.text(`cidade: ${registro.cidade}`);
+      doc.text(`data: ${new Date(registro.data).toISOString().split('T')[0]}`); // Format the date
+      doc.text(`hora: ${registro.hora}`);
       doc.moveDown();
     });
 
     doc.end();
   } catch (error) {
-    res.status(500).json({ error: 'Ocorreu um erro ao gerar o relatório.' });
+    res.status(500).json({ error: 'erro ao gerar relatório.' });
   }
 });
 

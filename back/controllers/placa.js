@@ -1,4 +1,5 @@
 const { sql } = require('@vercel/postgres');
+
 async function cadastrarPlaca({ numero_placa, cidade, data, hora }) {
   try {
     await sql`
