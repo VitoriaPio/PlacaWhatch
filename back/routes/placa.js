@@ -110,19 +110,19 @@ router.post('/cadastro', upload.single('image'),
   }
 );
 
-// router.get('/consulta/:placa', async (req, res) => {
-//   try {
-//     let placa = req.params.placa;
-//     resultado = await busca(placa);
-//     if (placa) {
-//       res.json({ placa: placa });
-//     }else {
-//       res.status(404).json({ error: 'nenhum registro encontrado.' });
-//     }
-// }catch (error){
-//   res.status(500).json({ error: 'erro ao consultar a placa.' });
-// }
-// });
+router.get('/consulta/:placa', async (req, res) => {
+  try {
+    let placa = req.params.placa;
+    resultado = await busca(placa);
+    if (placa) {
+      res.json({ placa: placa });
+    }else {
+      res.status(404).json({ error: 'nenhum registro encontrado.' });
+    }
+}catch (error){
+  res.status(500).json({ error: 'erro ao consultar a placa.' });
+}
+});
 
 router.get('/relatorio/cidade/:cidade', async (req, res) => {
   try {
@@ -142,13 +142,13 @@ router.get('/relatorio/cidade/:cidade', async (req, res) => {
 
     doc
       .fontSize(18)
-      .text(`Relatório - ${cidade}`, { align: 'center' });
+      .text(`relatório - ${cidade}`, { align: 'center' });
     doc.moveDown();
 
     registros.forEach((registro) => {
       doc.text(`nº da placa: ${registro.numero_placa}`);
       doc.text(`cidade: ${registro.cidade}`);
-      doc.text(`data: ${new Date(registro.data).toISOString().split('T')[0]}`); // Format the date
+      doc.text(`data: ${new Date(registro.data).toISOString().split('T')[0]}`);
       doc.text(`hora: ${registro.hora}`);
       doc.moveDown();
     });

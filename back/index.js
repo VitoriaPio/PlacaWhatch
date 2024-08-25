@@ -27,7 +27,7 @@ app.get('/api', (req, res) => {
 
 app.use('/api/placa', placaRota);
 
-app.get('/api/consulta/:placa', (req, res) => {
+app.get('/api/consultar/:placa', (req, res) => {
   const placa = req.params.placa ?? ''
 
   if(placa) {
