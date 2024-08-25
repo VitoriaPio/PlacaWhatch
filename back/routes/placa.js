@@ -110,18 +110,18 @@ router.post('/cadastro', upload.single('image'),
   }
 );
 
-router.get('/consulta/:placa', async (req, res) => {
-  try {
-    let placa = req.params.placa;
-    resultado = await busca(placa);
-    if (placa) {
-      res.json({ placa: placa });
-    }else {
-      res.status(404).json({ error: 'nenhum registro encontrado.' });
-    }
-}catch (error){
-  res.status(500).json({ error: 'erro ao consultar a placa.' });
-}
+router.get('/placa/consulta/:placa', (req, res) => {
+  const { placa } = req.params;
+
+  if (placa) {
+    return res.json({
+      message: `Placa ${placa} encontrada`
+    });
+  }
+
+  return res.status(404).json({
+    message: 'Placa não encontrada'
+  });
 });
 
 router.get('/relatorio/cidade/:cidade', async (req, res) => {
