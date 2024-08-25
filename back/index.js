@@ -1,13 +1,13 @@
 const express = require('express');
 const http = require('http');
-const createSocket = require('./sockets/sockets');
-const cors = require('cors');
+// const createSocket = require('./sockets/sockets');
+// const cors = require('cors');
 const app = express();
-app.use(cors());
+// app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const placaRota = require('./rotas/placa');
+const placaRota = require('./routes/placa');
 
 app.get('/', (req, res) => {
   res.json({
@@ -31,8 +31,8 @@ app.use('/api/placas', placaRota);
 const PORT = 8080;
 
 const server = http.createServer(app);
-const io = createSocket(server);
-app.set('socketio', io);
+// const io = createSocket(server);
+// app.set('socketio', io);
 
 server.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
