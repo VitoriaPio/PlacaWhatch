@@ -27,21 +27,11 @@ function UploadPlaca() {
     }
   
     try {
-      const response = await fetch('https://placa-whatch.vercel.app/api/placa/cadastro', {
-        method: 'POST',
-        body: formData,
-      });
-  
-      if (!response.ok) {
-        const errorData = await response.json(); 
-        throw new Error(errorData.error || 'Erro desconhecido');
-      }
-  
-      const result = await response.json();
-      setMessage(result.message);
+      const result = await registerPlate(formData);
+      setMessage('Placa registrada com sucesso!');
       console.log('Plate registered successfully:', result);
     } catch (error) {
-      setMessage(`Erro ao registrar a placa: ${error.message}`); 
+      setMessage(`Erro ao registrar a placa: ${error.message}`);
       console.error('Error registering plate:', error.message);
     }
   };
