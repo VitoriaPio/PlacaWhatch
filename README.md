@@ -1,6 +1,6 @@
 # Placa Watch - API de Reconhecimento de Placas de Veículos
 
-Este projeto é uma aplicação web desenvolvida com Node.js, Express.js e React para gerenciar o reconhecimento e o armazenamento de informações de placas de veículos usando OCR (Reconhecimento Óptico de Caracteres) e interagindo com um banco de dados PostgreSQL.
+Placa Watch é uma aplicação web desenvolvida com Node.js, Express.js e React, projetada para gerenciar o reconhecimento e armazenamento de informações de placas de veículos. Utiliza OCR (Reconhecimento Óptico de Caracteres) para processar imagens e armazena os dados em um banco de dados PostgreSQL.
 
 ## Funcionalidades
 
