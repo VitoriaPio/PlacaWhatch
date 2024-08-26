@@ -132,11 +132,6 @@ router.get('/consulta/:placa', async (req, res) => {
   }
 });
 
-  return res.status(404).json({
-    message: 'Placa não encontrada'
-  });
-});
-
 router.get('/relatorio/cidade/:cidade', async (req, res) => {
   try {
     const cidade = req.params.cidade;
