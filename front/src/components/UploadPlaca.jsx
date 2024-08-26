@@ -4,6 +4,7 @@ import registerPlate from "../actions/get-register";
 function UploadPlaca() {
   const [file, setFile] = useState(null);
   const [cidade, setCidade] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -27,8 +28,10 @@ function UploadPlaca() {
   
     try {
       const result = await registerPlate(formData);
+      setMessage('Placa registrada com sucesso!'); // Success message
       console.log('Plate registered successfully:', result);
     } catch (error) {
+      setMessage(`Erro ao registrar a placa: ${error.message}`); // Error message
       console.error('Error registering plate:', error.message);
     }
   };
