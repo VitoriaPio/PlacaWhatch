@@ -22,19 +22,27 @@ function UploadPlaca() {
     formData.append("image", file);
     formData.append("cidade", cidade);
   
-    for (let [key, value] of formData.entries()) {
-      console.log(key, value);
-    }
-  
     try {
-      const result = await registerPlate(formData);
-      setMessage('Placa registrada com sucesso!'); // Success message
+      const response = await fetch('/cadastro', {
+        method: 'POST',
+        body: formData,
+      });
+  
+      
+      if (!response.ok) {
+        const errorData = await response.json(); 
+        throw new Error(errorData.error || 'Erro desconhecido'); 
+      }
+  
+      const result = await response.json();
+      setMessage(result.message);
       console.log('Plate registered successfully:', result);
     } catch (error) {
-      setMessage(`Erro ao registrar a placa: ${error.message}`); // Error message
+      setMessage(`Erro ao registrar a placa: ${error.message}`);
       console.error('Error registering plate:', error.message);
     }
   };
+  
   
   return (
     <div>
