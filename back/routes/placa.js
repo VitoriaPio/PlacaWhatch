@@ -76,14 +76,13 @@ router.post('/cadastro', upload.single('image'),
       }
 
       // Data response
-      console.log('API RESPONSE',response.data);
-      console.log(numero);
+      // console.log('API RESPONSE',response.data)
 
       const numero = extrairPlaca(
         response.data.ParsedResults[0].ParsedText
       );
 
-      console.log({numero, parsedText: response.data.ParsedResults[0].ParsedText});
+      console.log({numero, parsedText: response.data.ParsedResults[0].ParsedText})
 
       const cidade = req.body.cidade;
       if (!numero) {
