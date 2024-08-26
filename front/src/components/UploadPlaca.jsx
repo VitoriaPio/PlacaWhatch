@@ -30,6 +30,9 @@ function UploadPlaca() {
       const response = await fetch('https://placa-whatch.vercel.app/api/placa/cadastro', {
         method: 'POST',
         body: formData,
+        headers: {
+          accept: 'application/json',
+        },
       });
   
       if (!response.ok) {
