@@ -60,6 +60,7 @@ async function busca(placa) {
       return { status: 500, data: { error: 'erro ao consultar placa.' } };
     }
   }
+  
 module.exports = {
     cadastrarPlaca,
     relatorio,

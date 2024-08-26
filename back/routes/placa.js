@@ -110,12 +110,20 @@ router.post('/cadastro', upload.single('image'),
   }
 );
 
-router.get('/consulta/:placa', (req, res) => {
+router.get('/consulta/:placa', async (req, res) => {
   const { placa } = req.params;
+
+  try {
+    await busca({placa: placa,
+    })
+    
+  } catch (error) {
+    console.log(error);
+  }
 
   if (placa) {
     return res.json({
-      message: `Placa ${placa} encontrada`
+      message: `Placa ${placa} encontrada no banco`
     });
   }
 

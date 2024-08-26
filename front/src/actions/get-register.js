@@ -5,6 +5,7 @@ export default async function registerPlate(formData) {
     method: 'POST',
     body: formData,
     headers: {
+        'PRIVATE-KEY': '{{private_key}}'
     }
   });
 
