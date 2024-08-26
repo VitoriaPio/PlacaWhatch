@@ -1,10 +1,12 @@
 import { useState } from "react";
-import registerPlate from "../actions/get-register";
+import useRegistry from "../hooks/use-registry";
 
 function UploadPlaca() {
   const [file, setFile] = useState(null);
   const [cidade, setCidade] = useState("");
   const [message, setMessage] = useState("");
+
+  const {registryPlate, data, isLoading} = useRegistry()
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -21,18 +23,13 @@ function UploadPlaca() {
     const formData = new FormData();
     formData.append("image", file);
     formData.append("cidade", cidade);
-  
-    for (let [key, value] of formData.entries()) {
-      console.log(key, value);
-    }
-  
+    
     try {
-      const result = await registerPlate(formData);
-      setMessage('Placa registrada com sucesso!');
-      console.log('Plate registered successfully:', result);
-    } catch (error) {
-      setMessage(`Erro ao registrar a placa: ${error.message}`);
-      console.error('Error registering plate:', error.message);
+      // Enviando formData para registrar placa
+      registryPlate(formData)
+    } catch (e) {
+      console.error(e)
+      throw new Error(e)
     }
   };
   
@@ -49,7 +46,10 @@ function UploadPlaca() {
         />
         <button type="submit">Upload</button>
       </form>
-      {message && <p>{message}</p>}
+
+      {isLoading && <p>Carregando...</p>}
+      {data && <p>{JSON.stringify(data, '', 2)}</p>}
+      {}
     </div>
   );
 }

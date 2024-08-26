@@ -3,8 +3,8 @@ import { useCallback, useState } from 'react'
 import { axiosBaseConfig } from '../utils/axios-base-config'
 
 export default function useRegistry() {
-  const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(null)
+  const [data, setData] = useState(null)
 
   const registryPlate = useCallback((formData) => {
     setIsLoading(true)
@@ -18,15 +18,11 @@ export default function useRegistry() {
       data: formData
     })
     .then(response => console.log(response))
-    .catch(e => {
-      setError(e)
-      console.error(e)
-    }
-    )
+    .then((data) => setData(data))
     .finally(() => {
       setIsLoading(false)
     })
   }, [])
 
-  return {registryPlate ,error, isLoading}
+  return {registryPlate , data, isLoading}
 }

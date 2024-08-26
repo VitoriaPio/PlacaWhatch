@@ -3,22 +3,26 @@ import getPlate from "../actions/get-plate";
 
 function ConsultaPlaca() {
   const [placa, setPlaca] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [resultado, setResultado] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!placa) return;
 
+    
     // Consultando placa na API
     try {
+      setIsLoading(true)
+
       const data = await getPlate(placa)
       if(data) setResultado(data)
-
-        console.log(data)
 
     } catch (e) {
       console.error(e)
     }
+
+    setIsLoading(false)
   };
 
   return (
@@ -33,6 +37,7 @@ function ConsultaPlaca() {
         />
         <button type="submit">Consultar</button>
       </form>
+      {isLoading && <p>Carregando...</p>}
       {resultado && <p>Resultado: {JSON.stringify(resultado, null, 2)}</p>}
     </div>
   );
