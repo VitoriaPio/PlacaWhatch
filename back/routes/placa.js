@@ -114,18 +114,23 @@ router.get('/consulta/:placa', async (req, res) => {
   const { placa } = req.params;
 
   try {
-    await busca({placa: placa,
-    })
-    
-  } catch (error) {
-    console.log(error);
-  }
+    const { status, data } = await busca(placa);
 
-  if (placa) {
-    return res.json({
-      message: `Placa ${placa} encontrada no banco`
-    });
+    if (status === 200) {
+      return res.json({
+        message: `Placa ${placa} encontrada no banco`,
+        data: data
+      });
+    } else if (status === 404) {
+      return res.status(404).json(data);
+    } else {
+      return res.status(500).json(data);
+    }
+  } catch (error) {
+    console.error('Error in route handler:', error);
+    return res.status(500).json({ error: 'erro ao consultar placa.' });
   }
+});
 
   return res.status(404).json({
     message: 'Placa não encontrada'

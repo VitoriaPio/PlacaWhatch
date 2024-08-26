@@ -42,14 +42,14 @@ async function relatorio(cidade) {
   }
   
 
-async function busca(placa) {
+  async function busca(placa) {
     try {
       const result = await sql`
         SELECT * FROM placa WHERE numero_placa = ${placa}
       `;
-
-      resultado = result.rows;
-        
+  
+      const resultado = result.rows;
+      
       if (resultado.length > 0) {
         return { status: 200, data: resultado[0] };
       } else {
@@ -61,6 +61,7 @@ async function busca(placa) {
     }
   }
   
+
 module.exports = {
     cadastrarPlaca,
     relatorio,
