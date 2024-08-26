@@ -23,7 +23,7 @@ function UploadPlaca() {
     formData.append("cidade", cidade);
   
     try {
-      const response = await fetch('/cadastro', {
+      const response = await fetch('/placa/cadastro', {
         method: 'POST',
         body: formData,
       });
