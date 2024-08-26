@@ -46,6 +46,7 @@ function UploadPlaca() {
         />
         <button type="submit">Upload</button>
       </form>
+      {message && <p>{message}</p>}
     </div>
   );
 }

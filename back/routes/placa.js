@@ -103,7 +103,7 @@ router.post('/cadastro', upload.single('image'),
         return res.status(500).json({ error: 'erro ao salvar dados.' });
       }
 
-    res.status(200).json(dados);
+    res.status(200).json({ message: 'placa registrada com sucesso!' });
     } catch (error) {
       res.status(500).json({ error });
     }
@@ -118,7 +118,7 @@ router.get('/consulta/:placa', async (req, res) => {
 
     if (status === 200) {
       return res.json({
-        message: `Placa ${placa} encontrada no banco`,
+        message: `placa ${placa} encontrada no banco`,
         data: data
       });
     } else if (status === 404) {
