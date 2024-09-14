@@ -12,6 +12,8 @@ app.use(express.json());
 
 const placaRota = require('./routes/placa');
 
+const usuarioRota = require('./routes/usuario');
+
 app.get('/', (req, res) => {
   res.json({
     message: 'API Placas Watch',
@@ -26,6 +28,7 @@ app.get('/api', (req, res) => {
 });
 
 app.use('/api/placa', placaRota);
+app.use('/api/usuario', usuarioRota);
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -39,7 +42,7 @@ app.get('/homeVideo', (req, res) => {
 
 app.get('/videoTutoral', (req, res) => {
     const range = req.headers.range;
-    const videoPath = './gato.mp4';
+    const videoPath = 'video/gato.mp4';
     const videoSize = fs.statSync(videoPath).size;
 
     const chunkSize = 1 * 1e+6;

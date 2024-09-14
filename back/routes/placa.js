@@ -5,6 +5,9 @@ const axios = require('axios');
 const formData = require('form-data');
 require('dotenv').config();
 
+
+const jwt= require('../middleware/jwt');
+
 const { cadastrarPlaca, relatorio, busca } = require('../controllers/placa');
 
 const router = express.Router();
@@ -110,7 +113,7 @@ router.post('/cadastro', upload.single('image'),
   }
 );
 
-router.get('/consulta/:placa', async (req, res) => {
+router.get('/consulta/:placa',jwt, async (req, res) => {
   const { placa } = req.params;
 
   try {
@@ -132,7 +135,7 @@ router.get('/consulta/:placa', async (req, res) => {
   }
 });
 
-router.get('/relatorio/cidade/:cidade', async (req, res) => {
+router.get('/relatorio/cidade/:cidade', jwt, async (req, res) => {
   try {
     const cidade = req.params.cidade;
     const { status, data: registros } = await relatorio(cidade);
