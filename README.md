@@ -9,10 +9,15 @@ Placa Watch é uma aplicação web desenvolvida com Node.js, Express.js e React,
 - Armazenamento de Dados: Informações sobre a placa reconhecida, cidade, data e hora são armazenadas em um banco de dados PostgreSQL.
 - Geração de Relatórios em PDF: É possível gerar relatórios em PDF para download contendo todas as placas registradas de uma cidade específica.
 - Consulta de Placas: Verifica se uma placa específica está registrada no banco de dados.
+- Tela de cadastro do cliente recebe email e senha.
 
 ## Design no Figma
 
 Link para o design no Figma: https://www.figma.com/design/bCzy7g6gVwWmfpcWwUA4Z9/Placa-Watch?node-id=0-1&t=21X6FqV3djtBOaqi-1
+
+## Login
+![image](https://github.com/user-attachments/assets/313a43f6-54b0-4431-a2dc-1714f99852a7)
+
 
 ## Home
 
