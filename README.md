@@ -12,7 +12,7 @@ Placa Watch é uma aplicação web desenvolvida com Node.js, Express.js e React,
 
 ## Design no Figma
 
-Link para o design no Figma: https://www.figma.com/design/bCzy7g6gVwWmfpcWwUA4Z9/Untitled?node-id=4-213&t=Ggwj4czNR6O91iGU-1
+Link para o design no Figma: https://www.figma.com/design/bCzy7g6gVwWmfpcWwUA4Z9/Placa-Watch?node-id=0-1&t=21X6FqV3djtBOaqi-1
 
 ## Home
 
