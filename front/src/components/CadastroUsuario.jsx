@@ -1,26 +1,26 @@
 import { useState } from "react";
 import axios from "axios";
 
-function Auth() {
+function Auth({ setIsAuthenticated }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [message, setMessage] = useState("");
-  const [isLogin, setIsLogin] = useState(true); 
+  const [isLogin, setIsLogin] = useState(true);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       if (isLogin) {
-        // Rota de Login
         const response = await axios.post("/login", { email, senha });
         const token = response.data.token;
         setMessage("Login bem-sucedido!");
         localStorage.setItem("token", token);
+        setIsAuthenticated(true); 
       } else {
-        // Rota de Cadastro
         await axios.post("/cadastro", { email, senha });
         setMessage("Usuário cadastrado com sucesso!");
+        setIsLogin(true); 
       }
     } catch (e) {
       setMessage(
