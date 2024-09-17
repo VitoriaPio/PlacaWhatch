@@ -1,6 +1,5 @@
 import { useState } from "react";
-import registerUser from "../actions/register-user";
-import loginUser from "../actions/login-user";
+import axios from "axios";
 
 function Auth() {
   const [email, setEmail] = useState("");
@@ -13,14 +12,14 @@ function Auth() {
 
     try {
       if (isLogin) {
-        // Usando a função loginUser
-        const data = await loginUser(email, senha);
-        const token = data.token; // Supondo que o token seja retornado no login
+        // Rota de Login
+        const response = await axios.post("/login", { email, senha });
+        const token = response.data.token;
         setMessage("Login bem-sucedido!");
-        localStorage.setItem("token", token); // Armazenando o token no localStorage
+        localStorage.setItem("token", token);
       } else {
-        // Usando a função registerUser
-        await registerUser(email, senha);
+        // Rota de Cadastro
+        await axios.post("/cadastro", { email, senha });
         setMessage("Usuário cadastrado com sucesso!");
       }
     } catch (e) {
