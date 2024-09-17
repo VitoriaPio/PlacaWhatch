@@ -11,9 +11,9 @@ export default function useRegistry() {
 
     axiosBaseConfig({
       method: 'post',
-      url: '/placa/cadastro',
+      url: '/placa/cadastrar',
       headers: {
-        'Content-Type': 'multiply/form-data',
+        'Content-Type': 'multipart/form-data',
       },
       data: formData
     })

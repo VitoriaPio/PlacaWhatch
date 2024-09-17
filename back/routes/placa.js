@@ -2,53 +2,55 @@ const express = require("express");
 const multer = require("multer");
 const PDFDocument = require("pdfkit");
 const FormData = require("form-data");
-const fs = require("fs");
 const axios = require("axios");
-const path = require("path");
 require("dotenv").config();
 
-const Optiic = require("optiic");
+const optiic = new (require("optiic"))({
+  apiKey: "3ZvKkV9Lwj7krvMcNZC7aFtdPUatBWQ8zgdG74YaBVgs",
+});
 
 const { relatorio, busca } = require("../controllers/placa");
 
 const router = express.Router();
-// const upload = multer({ storage: multer.memoryStorage() });
+const upload = multer({ storage: multer.memoryStorage() });
 
-const apiURL = "https://api.optiic.dev/process";
-const apiKey = "3ZvKkV9Lwj7krvMcNZC7aFtdPUatBWQ8zgdG74YaBVgs";
+const API_URL = "https://api.veryfi.com/api/v8/partner/documents";
+const CLIENT_ID = "vrf8zaOiiybueNGYOtSwXgaTi2EUhIpPZtHaLjr";
+const AUTHORIZATION = "apikey victorgb.dev:327781f1fa37dc74ce9bd92fd356da9e";
 
-const optiic = new Optiic({
-  apiKey,
-});
+router.post("/cadastrar", upload.single("image"), async (req, res) => {
+  if (!req.file || req.file.mimetype !== "image/png") {
+    return res.status(400).json({ message: "Somente PNG" });
+  }
+  const form = new FormData();
+  form.append("file", req.file.buffer);
 
-router.post("/cadastrar", async (req, res) => {
-  const imagePath = path.join(__dirname, "./assets/we-love-optiic.png");
-  const imageBuffer = fs.readFileSync(imagePath);
+  console.log(form);
 
-  // Create a new FormData instance
-  const formData = new FormData();
-  formData.append("image", imageBuffer, {
-    contentType: "image/png",
-    filename: "image.png",
-  });
-
-  // AIP Options
-  let options = {
-    image: formData,
-    mode: "ocr",
+  const config = {
+    method: "post",
+    url: API_URL,
+    headers: {
+      "Content-Type": "multipart/form-data",
+      "CLIENT-ID": CLIENT_ID,
+      AUTHORIZATION: AUTHORIZATION,
+      ...form.getHeaders(),
+    },
+    data: req.file.buffer,
   };
 
-  try {
-    optiic.process(options).then((data) => {
-      console.log(data);
-      res.json({ data });
+  axios(config)
+    .then((response) => {
+      console.log(JSON.stringify(response.data));
+      return res.status(200).json({ data: response.data });
+    })
+    .catch((error) => {
+      console.error(JSON.stringify(error.response.data));
+
+      return res.status(404).json({
+        message: error,
+      });
     });
-  } catch (e) {
-    console.log(e);
-    res.status(404).json({
-      message: e,
-    });
-  }
 });
 
 router.get("/consulta/:placa", async (req, res) => {
