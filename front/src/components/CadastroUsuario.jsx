@@ -12,13 +12,11 @@ function Auth() {
 
     try {
       if (isLogin) {
-        // Rota de Login
         const response = await axios.post("/login", { email, senha });
         const token = response.data.token;
         setMessage("Login bem-sucedido!");
         localStorage.setItem("token", token);
       } else {
-        // Rota de Cadastro
         await axios.post("/cadastro", { email, senha });
         setMessage("Usuário cadastrado com sucesso!");
       }
