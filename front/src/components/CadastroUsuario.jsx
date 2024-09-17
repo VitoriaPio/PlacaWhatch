@@ -12,13 +12,13 @@ function Auth({ setIsAuthenticated }) {
 
     try {
       if (isLogin) {
-        const response = await axios.post("/login", { email, senha });
+        const response = await axios.post("https://placa-whatch.vercel.app/api/usuario/login", { email, senha });
         const token = response.data.token;
         setMessage("Login bem-sucedido!");
         localStorage.setItem("token", token);
         setIsAuthenticated(true); 
       } else {
-        await axios.post("/cadastro", { email, senha });
+        await axios.post("https://placa-whatch.vercel.app/api/usuario/cadastro", { email, senha });
         setMessage("Usuário cadastrado com sucesso!");
         setIsLogin(true); 
       }
