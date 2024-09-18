@@ -9,10 +9,11 @@ export default async function loginUser(email, senha) {
     body: JSON.stringify({ email, senha }),
   });
 
+  const data = await response.json();
+
   if (!response.ok) {
-    throw new Error('Email ou senha incorretos');
+    throw new Error(data.message ?? 'Ocorreu um erro ao realizar o login');
   }
 
-  const data = await response.json();
   return data;
 }

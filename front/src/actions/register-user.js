@@ -9,10 +9,11 @@ export default async function registerUser(email, senha) {
     body: JSON.stringify({ email, senha }),
   });
 
+  const data = await response.json();
+
   if (!response.ok) {
-    throw new Error('Erro ao cadastrar usuário');
+    throw new Error(data.message ?? 'Erro ao cadastrar usuário');
   }
 
-  const data = await response.json();
   return data;
 }

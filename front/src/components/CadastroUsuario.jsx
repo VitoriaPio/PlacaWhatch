@@ -1,32 +1,55 @@
-import { useState } from "react";
-import axios from "axios";
+import { useContext, useState } from "react";
 
-function Auth({ setIsAuthenticated }) {
+import loginUser from "../actions/login-user";
+import registerUser from "../actions/register-user";
+
+import { useNavigate } from 'react-router-dom';
+
+import { AuthContext } from '../context/auth-context';
+
+export default function CadastroUsuario() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [message, setMessage] = useState("");
   const [isLogin, setIsLogin] = useState(true);
 
+  const { setIsAuthenticated } = useContext(AuthContext)
+
+  const navigate = useNavigate()
+
+  function goToHome() {
+    navigate('/upload')
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      if (isLogin) {
-        const response = await axios.post("https://placa-whatch.vercel.app/api/usuario/login", { email, senha });
-        const token = response.data.token;
-        setMessage("Login bem-sucedido!");
+    if (isLogin) {
+      try {
+        const { token, message } = await loginUser(email, senha)
+
+        setMessage(message);
+
+        // Registrando token no storage local
         localStorage.setItem("token", token);
-        setIsAuthenticated(true); 
-      } else {
-        await axios.post("https://placa-whatch.vercel.app/api/usuario/cadastro", { email, senha });
-        setMessage("Usuário cadastrado com sucesso!");
-        setIsLogin(true); 
+        setIsAuthenticated(true);
+
+        // Redirecionando para a tela de upload
+        goToHome()
+      } catch (e) {
+        setMessage(e);
+        console.error(e);
       }
-    } catch (e) {
-      setMessage(
-        isLogin ? "Email ou senha incorretos." : "Erro ao cadastrar o usuário."
-      );
-      console.error(e);
+    } else {
+      try {
+        const { message } = await registerUser(email, senha)
+
+        setMessage(message);
+        setIsLogin(true);
+      } catch (e) {
+        setMessage(e);
+        console.error(e);
+      }
     }
   };
 
@@ -61,5 +84,3 @@ function Auth({ setIsAuthenticated }) {
     </div>
   );
 }
-
-export default Auth;

@@ -36,6 +36,8 @@ router.post('/cadastro', async (req, res) => {
   }
 });
 
+const JWT_SECRET = "uma_chave_secreta_super_segura"
+
 router.post('/login', async (req, res) => {
     const { email, senha } = req.body;
   
@@ -57,9 +59,11 @@ router.post('/login', async (req, res) => {
   
       const token = jwt.sign(
         { id: usuario.id, email: usuario.email },
-        process.env.JWT_SECRET,
+        JWT_SECRET,
         { expiresIn: '1h' }
       );
+
+      console.log(token)
   
       res.status(200).json({ message: 'Login bem-sucedido!', token });
     } catch (error) {
