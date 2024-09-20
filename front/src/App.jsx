@@ -1,67 +1,15 @@
-import React, { useState } from "react";
-import {
-  Navigate,
-  Route,
-  BrowserRouter as Router,
-  Routes
-} from "react-router-dom";
-import ConsultaPlaca from "./components/ConsultaPlaca";
-import RelatorioCidade from "./components/RelatorioCidade";
-import UploadPlaca from "./components/UploadPlaca";
-import VideoTutorial from "./components/Video";
+import { RouterProvider } from 'react-router-dom';
 
-import CadastroUsuario from "./components/CadastroUsuario";
+import routes from './routes/index';
 
-import AuthLayout from './layout/auth-layout';
-import MainLayout from "./layout/main-layout";
+import { AuthProvider } from './context/auth-context';
 
-function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+export default function App() {
   return (
-    <Router>
-      <div className="App">
-        {/* Componente que verifica se esta autenticado */}
 
-        <Routes>
-          <Route path="/usuario" element={
-            <AuthLayout>
-              <CadastroUsuario />
-            </AuthLayout>
-          } />
-          <Route path="/upload" element={
-            <AuthLayout>
-              <MainLayout>
-                <UploadPlaca />
-              </MainLayout>
-            </AuthLayout>
-          } />
-          <Route path="/consulta" element={
-            <AuthLayout>
-              <MainLayout>
-                <ConsultaPlaca />
-              </MainLayout>
-            </AuthLayout>
-          } />
-          <Route path="/relatorio" element={
-            <AuthLayout>
-              <MainLayout>
-                <RelatorioCidade />
-              </MainLayout>
-            </AuthLayout>
-          } />
-          <Route path="/tutorial" element={
-            <AuthLayout>
-              <MainLayout>
-                <VideoTutorial />
-              </MainLayout>
-            </AuthLayout>
-          } />
-          <Route path="/" element={<Navigate to="/upload" />} />
-        </Routes>
-      </div>
-    </Router>
+    <AuthProvider>
+      <RouterProvider router={routes} />
+    </AuthProvider>
   );
-}
 
-export default App;
+}

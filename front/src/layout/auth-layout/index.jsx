@@ -11,6 +11,8 @@ export default function AuthLayout({ children }) {
   const navigate = useNavigate()
 
   useLayoutEffect(() => {
+    console.log('está autenticado?', isAuthenticated)
+
     if (!isAuthenticated) {
       navigate('/usuario')
     }
