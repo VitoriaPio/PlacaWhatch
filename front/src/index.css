@@ -1,29 +1,26 @@
+* {
+  margin: 0px;
+  padding: 0px
+}
+
+html,
+body {
+  height: 100vh;
+  width: 100%;
+}
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;
-  padding: 20px;
   background: linear-gradient(rgba(255, 252, 252, 0.877),
       rgba(255, 255, 255, 0.829)),
     url(assets/wallpaper.jpg);
   background-size: cover;
-  min-height: 100vh;
-}
-
-.App {
-  width: 800px;
-  margin: auto;
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-repeat: no-repeat;
 }
 
 h1 {
   color: #333;
-}
-
-form {
-  margin-bottom: 20px;
 }
 
 input {

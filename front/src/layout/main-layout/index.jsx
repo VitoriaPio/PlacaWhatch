@@ -8,7 +8,13 @@ export default function MainLayout({ children }) {
   return (
     <div className={styles.container}>
       <Header />
-      {children}
+      <main style={{
+        height: '100%',
+        width: '100%',
+        padding: '16px 0px'
+      }}>
+        {children}
+      </main>
     </div>
   )
 }
