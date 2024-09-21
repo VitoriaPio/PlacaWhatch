@@ -2,10 +2,8 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;
   padding: 20px;
-  background: linear-gradient(
-      rgba(255, 252, 252, 0.877),
-      rgba(255, 255, 255, 0.829)
-    ),
+  background: linear-gradient(rgba(255, 252, 252, 0.877),
+      rgba(255, 255, 255, 0.829)),
     url(assets/wallpaper.jpg);
   background-size: cover;
   min-height: 100vh;
@@ -21,7 +19,6 @@ body {
 }
 
 h1 {
-  text-align: center;
   color: #333;
 }
 
@@ -47,24 +44,6 @@ button {
 
 button:hover {
   background-color: #254260;
-}
-.menu{
-  display: flex;
-  justify-content: center;
-}
-nav {
-  margin-bottom: 20px;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-  gap: 10px;
-}
-
-li {
-  display: inline;
 }
 
 a {
