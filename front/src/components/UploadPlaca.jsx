@@ -6,7 +6,7 @@ function UploadPlaca() {
   const [cidade, setCidade] = useState("");
   const [message, setMessage] = useState("");
 
-  const {registryPlate, data, isLoading} = useRegistry()
+  const { registryPlate, data, isLoading } = useRegistry()
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -19,11 +19,11 @@ function UploadPlaca() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!file || !cidade) return;
-  
+
     const formData = new FormData();
     formData.append("image", file);
     formData.append("cidade", cidade);
-    
+
     try {
       // Enviando formData para registrar placa
       registryPlate(formData)
@@ -32,9 +32,9 @@ function UploadPlaca() {
       throw new Error(e)
     }
   };
-  
+
   return (
-    <div>
+    <div className="container">
       <h2>Upload de Placa</h2>
       <form onSubmit={handleSubmit}>
         <input type="file" onChange={handleFileChange} />
@@ -49,7 +49,7 @@ function UploadPlaca() {
 
       {isLoading && <p>Carregando...</p>}
       {data && <p>{JSON.stringify(data, '', 2)}</p>}
-      {}
+      { }
     </div>
   );
 }

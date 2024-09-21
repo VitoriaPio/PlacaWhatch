@@ -11,7 +11,7 @@ export default function MainLayout({ children }) {
       <main style={{
         height: '100%',
         width: '100%',
-        padding: '16px 0px'
+        padding: '24px 0px 0px 0px'
       }}>
         {children}
       </main>

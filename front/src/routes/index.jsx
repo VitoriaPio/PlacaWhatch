@@ -1,6 +1,5 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 
-import CadastroUsuario from "../components/CadastroUsuario";
 import ConsultaPlaca from "../components/ConsultaPlaca";
 import RelatorioCidade from "../components/RelatorioCidade";
 import UploadPlaca from "../components/UploadPlaca";
@@ -8,6 +7,8 @@ import VideoTutorial from "../components/Video";
 
 import AuthLayout from '../layout/auth-layout';
 import MainLayout from "../layout/main-layout";
+import CadastroPage from "../pages/Cadastro";
+import LoginPage from "../pages/Login";
 
 const routes = createBrowserRouter([
 
@@ -16,10 +17,18 @@ const routes = createBrowserRouter([
     element: (<Navigate to="/upload" />)
   },
   {
-    path: "/usuario",
+    path: "/login",
     element: (
       <AuthLayout>
-        <CadastroUsuario />
+        <LoginPage />
+      </AuthLayout>
+    )
+  },
+  {
+    path: "/cadastro",
+    element: (
+      <AuthLayout>
+        <CadastroPage />
       </AuthLayout>
     )
   },
