@@ -4,6 +4,27 @@
 
   display: flex;
   flex-direction: column;
-  align-items: 'center';
-  justify-content: 'center';
+  align-items: center;
+  justify-content: center;
+
+  gap: 24px
+}
+
+.form {
+  width: 60%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 16px
+}
+
+.formInput {
+  width: 50%;
+}
+
+.submitButton {
+  width: 50%;
 }

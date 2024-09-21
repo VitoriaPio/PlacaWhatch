@@ -29,13 +29,11 @@ export default function LoginPage() {
     setIsLoading(true)
 
     try {
-      const data = await loginUser(email, senha)
+      const { token, message } = await loginUser(email, senha)
 
-      setMessage(data.message);
-
-      if (data.token) {
+      if (token) {
         // Registrando token no storage local
-        localStorage.setItem("token", data.token);
+        localStorage.setItem("token", token);
         setIsAuthenticated(true);
 
         // Redirecionando para a tela de upload
@@ -53,8 +51,9 @@ export default function LoginPage() {
   return (
     <div className={styles.container}>
       <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <input
+          className={styles.formInput}
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -62,23 +61,26 @@ export default function LoginPage() {
           required
         />
         <input
+          className={styles.formInput}
           type="password"
           value={senha}
           onChange={(e) => setSenha(e.target.value)}
           placeholder="Senha"
           required
         />
-        <button disabled={isLoading} type="submit">
+        <button disabled={isLoading}>
+          Não tem uma conta? Cadastre-se
+        </button>
+
+        <button
+          className={styles.submitButton}
+          disabled={isLoading} type="submit"
+        >
           Entrar
         </button>
         {isLoading && <p>Carregando...</p>}
+
       </form>
-
-      {message && <p>{message}</p>}
-
-      <button disabled={isLoading}>
-        Não tem uma conta? Cadastre-se
-      </button>
     </div>
   );
 }

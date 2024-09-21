@@ -12,7 +12,7 @@ export default function Header() {
   function logOut() {
     setIsAuthenticated(false)
 
-    navigate('/usuario')
+    navigate('/login')
   }
 
   return (
