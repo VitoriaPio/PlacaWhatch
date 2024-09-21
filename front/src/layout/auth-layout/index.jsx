@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react"
+import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import styles from "./auth.module.css"
 
@@ -10,9 +10,7 @@ export default function AuthLayout({ children }) {
 
   const navigate = useNavigate()
 
-  useLayoutEffect(() => {
-    console.log('está autenticado?', isAuthenticated)
-
+  useEffect(() => {
     if (!isAuthenticated) {
       navigate('/usuario')
     }
