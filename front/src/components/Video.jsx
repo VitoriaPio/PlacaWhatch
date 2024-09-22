@@ -24,7 +24,7 @@ function VideoTutorial() {
     };
 
     fetchVideo(); // Chama a função quando o componente é montado
-  }, []);
+  }, [videoUrl]);
 
   return (
     <div className="container">
