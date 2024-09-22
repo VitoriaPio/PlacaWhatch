@@ -4,6 +4,8 @@ import getReport from "../actions/get-report";
 function RelatorioCidade() {
   const [cidade, setCidade] = useState("");
 
+  const token = window.localStorage.getItem('token')
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!cidade) return;
@@ -11,7 +13,7 @@ function RelatorioCidade() {
     console.log("Gerando relatório para:", cidade);
 
     try {
-      const data = await getReport(cidade)
+      const data = await getReport(cidade, token)
       if (data) setResultado(data)
 
       console.log(data)

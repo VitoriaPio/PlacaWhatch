@@ -27,9 +27,9 @@ const routes = createBrowserRouter([
   {
     path: "/cadastro",
     element: (
-      <AuthLayout>
+      <div className="cadastro-wrapper">
         <CadastroPage />
-      </AuthLayout>
+      </div>
     )
   },
   {

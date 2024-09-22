@@ -40,9 +40,9 @@ app.get('/homeVideo', (req, res) => {
     res.sendFile(__dirname + '/videos.html');
 });
 
-app.get('/videoTutoral', (req, res) => {
+app.get('/videoTutorial', (req, res) => {
     const range = req.headers.range;
-    const videoPath = 'video/gato.mp4';
+    const videoPath = 'video/yoshi.mp4';
     const videoSize = fs.statSync(videoPath).size;
 
     const chunkSize = 1 * 1e+6;

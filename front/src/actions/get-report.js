@@ -1,10 +1,11 @@
 import { API_BASE_URL } from '../utils/axios-base-config'
 
-export default async function getReport(cidade) {
+export default async function getReport(cidade, token) {
   const response = await fetch(`${API_BASE_URL}/placa/relatorio/cidade/${cidade}`, {
     method: 'GET',
     headers: {
-      'Accept': 'application/pdf'
+      'Accept': 'application/pdf',
+      'x-auth-token': token
     }
   })
 

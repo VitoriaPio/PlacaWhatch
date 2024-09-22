@@ -62,14 +62,7 @@ export default function CadastroUsuario() {
   };
 
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      width: '100%',
-      height: '100%',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}>
+    <div className="cadastro">
       <h2>{isLogin ? "Login" : "Cadastro"}</h2>
       <form onSubmit={handleSubmit}>
         <input
