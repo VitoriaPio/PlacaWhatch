@@ -36,7 +36,7 @@ function UploadPlaca() {
   return (
     <div className="container">
       <h2>Upload de Placa</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form">
         <input type="file" onChange={handleFileChange} />
         <input
           type="text"

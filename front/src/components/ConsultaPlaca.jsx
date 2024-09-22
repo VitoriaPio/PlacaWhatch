@@ -10,13 +10,13 @@ function ConsultaPlaca() {
     e.preventDefault();
     if (!placa) return;
 
-    
+
     // Consultando placa na API
     try {
       setIsLoading(true)
 
       const data = await getPlate(placa)
-      if(data) setResultado(data)
+      if (data) setResultado(data)
 
     } catch (e) {
       console.error(e)
@@ -26,9 +26,9 @@ function ConsultaPlaca() {
   };
 
   return (
-    <div>
+    <div className="container">
       <h2>Consulta de Placa</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form">
         <input
           type="text"
           value={placa}

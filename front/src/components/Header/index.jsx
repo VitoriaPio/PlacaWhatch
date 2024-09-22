@@ -32,9 +32,11 @@ export default function Header() {
           <li>
             <Link to="/tutorial">Tutorial</Link>
           </li>
+          <li>
+            <Link className='logout' onClick={() => logOut()}>Logout</Link>
+          </li>
         </ul>
       </nav>
-      <button onClick={() => logOut()}>Logout</button>
     </header>
   )
 }

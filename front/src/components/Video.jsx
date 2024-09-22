@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 function VideoTutorial() {
   const [videoUrl, setVideoUrl] = useState(null); // Armazena a URL do vídeo
@@ -27,7 +27,7 @@ function VideoTutorial() {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <h2>Vídeo Tutorial</h2>
 
       {message && <p>{message}</p>}

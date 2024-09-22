@@ -12,9 +12,9 @@ function RelatorioCidade() {
 
     try {
       const data = await getReport(cidade)
-      if(data) setResultado(data)
+      if (data) setResultado(data)
 
-        console.log(data)
+      console.log(data)
 
     } catch (e) {
       console.error(e)
@@ -23,9 +23,9 @@ function RelatorioCidade() {
   };
 
   return (
-    <div>
+    <div className="container">
       <h2>Relatório por Cidade</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form">
         <input
           type="text"
           value={cidade}
