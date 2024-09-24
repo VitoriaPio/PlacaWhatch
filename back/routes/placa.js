@@ -49,7 +49,6 @@ router.post('/cadastro', upload.single('image'),
 
       console.log(horaAtual);
       console.log(dataAtual);
-      let dados;
 
       const form = new formData();
       form.append('file', req.file.buffer, {
@@ -78,8 +77,6 @@ router.post('/cadastro', upload.single('image'),
         return res.status(400).json({ error: 'imagem invalida' });
       }
 
-      // Data response
-      // console.log('API RESPONSE',response.data)
 
       const numero = extrairPlaca(
         response.data.ParsedResults[0].ParsedText
@@ -143,8 +140,6 @@ router.get('/relatorio/cidade/:cidade', jwt, async (req, res) => {
     if (status === 404) {
       return res.status(404).json(registros);
     }
-
-    console.log(registros);
 
     const doc = new PDFDocument();
     res.setHeader('Content-Type', 'application/pdf');
