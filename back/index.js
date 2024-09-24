@@ -1,18 +1,22 @@
 const express = require('express');
 const http = require('http');
-// const createSocket = require('./sockets/sockets');
 const cors = require('cors');
+const fs = require('fs')
 
+// routes
+const placaRota = require('./routes/placa');
+const usuarioRota = require('./routes/usuario');
+
+const corsOptions = {
+  origin: "*", //Permitindo todas as origens
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+}
 
 const app = express();
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-const placaRota = require('./routes/placa');
-
-const usuarioRota = require('./routes/usuario');
 
 app.get('/', (req, res) => {
   res.json({
@@ -29,12 +33,6 @@ app.get('/api', (req, res) => {
 
 app.use('/api/placa', placaRota);
 app.use('/api/usuario', usuarioRota);
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 
 app.get('/homeVideo', (req, res) => {
     res.sendFile(__dirname + '/videos.html');
