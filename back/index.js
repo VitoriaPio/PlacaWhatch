@@ -3,6 +3,8 @@ const http = require('http');
 const cors = require('cors');
 const fs = require('fs')
 
+const AllowAllOrigins = require('./middleware/cors')
+
 // routes
 const placaRota = require('./routes/placa');
 const usuarioRota = require('./routes/usuario');
@@ -14,7 +16,8 @@ const corsOptions = {
 
 const app = express();
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(AllowAllOrigins)
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
