@@ -2,7 +2,6 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-
 const { cadastrarUsuario, buscarUsuarioPorEmail } = require('../controllers/usuario');
 
 const router = express.Router();
@@ -41,6 +40,8 @@ const JWT_SECRET = "uma_chave_secreta_super_segura"
 router.post('/login', async (req, res) => {
     const { email, senha } = req.body;
   
+    console.log(req.headers)
+
     try {
       if (!email || !senha) {
         return res.status(400).json({ message: 'Email e senha são obrigatórios.' });
@@ -62,8 +63,6 @@ router.post('/login', async (req, res) => {
         JWT_SECRET,
         { expiresIn: '1h' }
       );
-
-      console.log(token)
   
       res.status(200).json({ message: 'Login bem-sucedido!', token });
     } catch (error) {
