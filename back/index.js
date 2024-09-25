@@ -3,28 +3,10 @@ const http = require('http');
 // const createSocket = require('./sockets/sockets');
 const cors = require('cors');
 
-<<<<<<< HEAD
-const AllowAllOrigins = require('./middleware/cors')
-
-// routes
-const placaRota = require('./routes/placa');
-const usuarioRota = require('./routes/usuario');
-
-const corsOptions = {
-  origin: "*", //Permitindo todas as origens
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-}
-
-const app = express();
-
-// app.use(cors(corsOptions));
-app.use(AllowAllOrigins)
-=======
 
 const app = express();
 
 app.use(cors());
->>>>>>> parent of 7b9ea34 (fix: Cors config)
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
